@@ -1,87 +1,81 @@
-#include "pch.h"
 #include "CharacterController.h"
 
-LeTurfu::CharacterController::CharacterController(Entity& entity)
+
+LeTurfu::CharacterController::CharacterController()
 {
-    
 }
 
 void LeTurfu::CharacterController::Update(float deltaTime)
 {
     DetectBorder();
 
-    if (isRotate) {
+   /* if (isRotate) {
         entityParent.rotate(rotateSpeed);
-    }
+    }*/
     MoveEntity();
 }
 
 void LeTurfu::CharacterController::MoveEntity()
 {
-    if (baseMovement.x >= -maxSpeed && baseMovement.x <= maxSpeed) {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-        {
-            baseMovement += sf::Vector2f(-.0001f, 0);
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-        {
-            baseMovement += sf::Vector2f(.0001f, 0);
-        }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && baseMovement.x >= -maxSpeed)
+    {
+        baseMovement += sf::Vector2f(-speed, 0);
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && baseMovement.x <= maxSpeed)
+    {
+        baseMovement += sf::Vector2f(speed, 0);
     }
 
-    if (baseMovement.y >= -maxSpeed && baseMovement.y <= maxSpeed) {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-        {
-            baseMovement += sf::Vector2f(0, -0.0001f);
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-        {
-            baseMovement += sf::Vector2f(0, 0.0001f);
-        }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && baseMovement.y >= -maxSpeed)
+    {
+        baseMovement += sf::Vector2f(0, -speed);
     }
-
-
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && baseMovement.y <= maxSpeed)
+    {
+        baseMovement += sf::Vector2f(0, speed);
+    }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && baseMovement != sf::Vector2f(0, 0)) {
         if (baseMovement.x > 0)
-            baseMovement += sf::Vector2f(-0.0001f, 0);
+            baseMovement += sf::Vector2f(-speed, 0);
         else
-            baseMovement += sf::Vector2f(0.0001f, 0);
+            baseMovement += sf::Vector2f(speed, 0);
 
 
         if (baseMovement.y > 0)
-            baseMovement += sf::Vector2f(0, -0.0001f);
+            baseMovement += sf::Vector2f(0, -speed);
         else
-            baseMovement += sf::Vector2f(0, 0.0001f);
+            baseMovement += sf::Vector2f(0, speed);
     }
 
-    entityParent.move(baseMovement);
+    LeTurfu::Application::instance->FindEntityparent(this)->move(baseMovement);
 }
 
 void LeTurfu::CharacterController::DetectBorder()
 {
     sf::RenderWindow& window = LeTurfu::Application::GetInstance()->window;
 
-    if (entityParent.getPosition().x + (texture.getSize().x * entityParent.getScale().x) / 2 >= window.getSize().x) {
+    sf::Texture texture = LeTurfu::Application::instance->FindEntityparent(this)->GetComponent<SpriteRendererComponent>()->texture;
+    sf::Transformable* transform = LeTurfu::Application::instance->FindEntityparent(this);
+
+    if (transform->getPosition().x + (texture.getSize().x * transform->getScale().x) / 2 >= window.getView().getCenter().x + window.getView().getSize().x /2) {
         baseMovement.x *= -1;
         CoinTouch();
     }
-    else if (entityParent.getPosition().x - (texture.getSize().x * entityParent.getScale().x) / 2 <= 0) {
+    else if (transform->getPosition().x - (texture.getSize().x * transform->getScale().x) / 2 <= window.getView().getCenter().x - window.getView().getSize().x / 2) {
         baseMovement.x *= -1;
         CoinTouch();
     }
 
-    if (entityParent.getPosition().y + (texture.getSize().y * entityParent.getScale().y) / 2 >= window.getSize().y) {
+    if (transform->getPosition().y + (texture.getSize().y * transform->getScale().y) / 2 >= window.getView().getCenter().y + window.getView().getSize().y / 2) {
         baseMovement.y *= -1;
         CoinTouch();
 
     }
-    else if (entityParent.getPosition().y - (texture.getSize().y * entityParent.getScale().y) / 2 <= 0) {
+    else if (transform->getPosition().y - (texture.getSize().y * transform->getScale().y) / 2 <= window.getView().getCenter().y - window.getView().getSize().y / 2) {
         baseMovement.y *= -1;
         CoinTouch();
     }
-
-
 }
 
 void LeTurfu::CharacterController::CoinTouch()

@@ -1,9 +1,9 @@
 #include "pch.h"
 #include "AComponent.h"
 
-LeTurfu::AComponent::AComponent(Entity& entity)
+LeTurfu::AComponent::AComponent()
 {
-	entityParent = entity;
+	
 }
 
 void LeTurfu::AComponent::Awake()

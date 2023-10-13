@@ -1,16 +1,13 @@
 #pragma once
 #include <iostream>
-#include <string>
-#include "Entity.h"
 namespace LeTurfu {
 
 class AComponent
 {
 protected:
 public:
-	Entity& entityParent;
 	int ID;
-	AComponent(Entity& entity);
+	AComponent();
 	virtual void Awake();
 	virtual void Start();
 	virtual void Update(float deltaTime);

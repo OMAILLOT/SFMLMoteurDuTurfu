@@ -1,8 +1,5 @@
-﻿#include "pch.h"
-#include "Application.h"
-#include "Entity.h"
-#include <iostream>
-#include "Entity.cpp"
+﻿#include "Application.h"
+
 
 LeTurfu::Application* LeTurfu::Application::instance = nullptr;;
 
@@ -22,9 +19,7 @@ int LeTurfu::Application::Init()
 {
     window.create(sf::VideoMode(1920, 1080), "SFML works!", sf::Style::Fullscreen);
 
-
-
-    AllUpdate();
+    //AllUpdate();
     return 0;
 }
 
@@ -81,4 +76,16 @@ void LeTurfu::Application::CreateComponent()
 void LeTurfu::Application::ChangeColorBackground()
 {
     currentColor = allColor[std::rand() % allColor.size()];
+}
+
+LeTurfu::Entity* LeTurfu::Application::FindEntityparent(AComponent* currentComponent)
+{
+    for (Entity* entity : allEntity) {
+
+        for (AComponent* component : entity->allComponents) {
+            if (component->ID == currentComponent->ID) {
+                return entity;
+            }
+        }
+    }
 }

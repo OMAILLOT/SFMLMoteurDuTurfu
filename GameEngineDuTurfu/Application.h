@@ -33,6 +33,10 @@ namespace LeTurfu {
 		void CreateComponent();
 		void ChangeColorBackground();
 
+
+		
+		Entity* FindEntityparent(AComponent* currentComponent);
+
 	private:
 
 		sf::Clock Clock;

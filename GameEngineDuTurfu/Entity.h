@@ -7,11 +7,11 @@ namespace LeTurfu {
 	class Entity : public sf::Transformable, public sf::Drawable 
 	{
 	protected:
-		std::vector<AComponent> allComponents;
 		int ID = 0315665;
 
 	public:
 		
+		std::vector<AComponent*> allComponents;
 		void Awake();
 		void Start();
 		void Update(float deltaTime);
@@ -20,8 +20,21 @@ namespace LeTurfu {
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
 		}
 		//template <AComponent component>
-		AComponent& addComponent(AComponent component);
-		AComponent& GetComponent(AComponent component);
+		AComponent* addComponent(AComponent* component);
+		AComponent* GetComponent(AComponent* component);
+
+
+		template<typename T>
+		inline T* GetComponent() {
+	
+			for (AComponent* component : allComponents) {
+				T* test = dynamic_cast<T*>(component);
+				if (test != nullptr) {
+					return test;
+				}
+			}
+			return nullptr;
+		}
 
 	};
 }

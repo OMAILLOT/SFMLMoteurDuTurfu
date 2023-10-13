@@ -1,8 +1,7 @@
 #include "SpriteRendererComponent.h"
-#include "Application.h"
 
 
-LeTurfu::SpriteRendererComponent::SpriteRendererComponent(Entity& entity)
+LeTurfu::SpriteRendererComponent::SpriteRendererComponent()
 {
     if (!texture.loadFromFile("DVD.png"))
     {
@@ -10,7 +9,7 @@ LeTurfu::SpriteRendererComponent::SpriteRendererComponent(Entity& entity)
     }
 
     sprite.setTexture(texture);
-    sprite.setPosition(position);
+    sprite.setPosition(LeTurfu::Application::instance->FindEntityparent(this)->getPosition());
     sprite.setScale(scale);
 
     sprite.setOrigin(texture.getSize().x / 2, texture.getSize().y / 2);
@@ -18,6 +17,7 @@ LeTurfu::SpriteRendererComponent::SpriteRendererComponent(Entity& entity)
 
 void LeTurfu::SpriteRendererComponent::Update(float deltaTime)
 {
+    sprite.setPosition(LeTurfu::Application::instance->FindEntityparent(this)->getPosition());
     LeTurfu::Application::GetInstance()->window.draw(sprite);
 }
 

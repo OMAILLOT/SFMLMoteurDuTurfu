@@ -1,6 +1,8 @@
 #pragma once
 #include "AComponent.h"
 #include "Application.h"
+#include "SpriteRendererComponent.h"
+#include <iostream>
 
 namespace LeTurfu {
 	class CharacterController : public AComponent
@@ -8,12 +10,14 @@ namespace LeTurfu {
 	public:
 
 		sf::Vector2f baseMovement = sf::Vector2f(0.1f,.1f);
-		float maxSpeed;
-		float speedIncrease = 0;
-		float rotateSpeed;
+		float maxSpeed = 3;
+		float speedIncrease = 0.1f;
+		float rotateSpeed = 0;
+		float speed = 0.01f;
 		bool isRotate;
 
-		CharacterController(Entity& entity);
+		CharacterController();
+
 		virtual void Update(float deltaTime) override;
 		void MoveEntity();
 		void DetectBorder();
