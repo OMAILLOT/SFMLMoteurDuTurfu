@@ -25,3 +25,7 @@ void LeTurfu::SpriteRendererComponent::GenerateID()
 {
     ID = 2611584466;
 }
+
+void LeTurfu::SpriteRendererComponent::Draw()
+{
+}

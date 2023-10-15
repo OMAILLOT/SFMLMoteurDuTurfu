@@ -1,6 +1,6 @@
 #pragma once
+#include <SFML/Graphics.hpp>
 #include "AComponent.h"
-#include "SFML\Graphics.hpp"
 #include "Application.h"
 
 namespace LeTurfu {

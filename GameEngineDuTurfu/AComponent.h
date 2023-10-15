@@ -13,6 +13,7 @@ public:
 	virtual void Update(float deltaTime);
 	virtual void LateUpdate();
 	virtual void GenerateID();
+	virtual void Draw();
 };
 
 }

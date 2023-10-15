@@ -6,10 +6,12 @@
 #include <CameraComponent.h>
 #include <RessourceManager.h>
 
+
+
 int main()
 {
 
-    LeTurfu::RessourceManager ressourceManager;
+    //LeTurfu::RessourceManager ressourceManager;
 
     LeTurfu::Entity* newEntity = LeTurfu::Application::GetInstance()->CreateEntity();
     LeTurfu::Application::GetInstance()->Init();

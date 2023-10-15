@@ -1,6 +1,6 @@
 #pragma once
 #include "AComponent.h"
-#include "SFML/Graphics.hpp"
+#include <SFML/Graphics.hpp>
 #include "Application.h"
 #include <iostream>
 
@@ -17,5 +17,6 @@ namespace LeTurfu {
 		SpriteRendererComponent();
 		virtual void Update(float deltaTime) override;
 		virtual void GenerateID() override;
+		virtual void Draw() override;
 	};
 }

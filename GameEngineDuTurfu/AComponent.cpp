@@ -26,6 +26,10 @@ void LeTurfu::AComponent::GenerateID()
 {
 }
 
+void LeTurfu::AComponent::Draw()
+{
+}
+
 //LeTurfu::AComponent::AComponent()
 //{
 //	std::string finalResult;

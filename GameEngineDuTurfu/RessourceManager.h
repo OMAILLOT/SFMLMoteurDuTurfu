@@ -1,13 +1,13 @@
 #pragma once
-#include <Windows.h>
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <Windows.h>
 
 namespace LeTurfu {
 	class RessourceManager
 	{
 	private:
-		RessourcesManager* instance;
+		//RessourcesManager* instance;
 
 
 	public:
