@@ -13,13 +13,14 @@ LeTurfu::Application* LeTurfu::Application::GetInstance()
 
 LeTurfu::Application::Application()
 {
+    physics = new Physics();
+    physics->Init();
 }
 
 int LeTurfu::Application::Init()
 {
     window.create(sf::VideoMode(1920, 1080), "SFML works!", sf::Style::Fullscreen);
 
-    //AllUpdate();
     return 0;
 }
 
@@ -48,6 +49,8 @@ void LeTurfu::Application::AllUpdate()
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
             window.close();
         }
+
+        physics->UpdatePhysics(deltatime);
 
         window.display();
     }
@@ -78,6 +81,11 @@ void LeTurfu::Application::ChangeColorBackground()
     currentColor = allColor[std::rand() % allColor.size()];
 }
 
+LeTurfu::Physics* LeTurfu::Application::GetPhysics()
+{
+    return physics;
+}
+
 LeTurfu::Entity* LeTurfu::Application::FindEntityparent(AComponent* currentComponent)
 {
     for (Entity* entity : allEntity) {
@@ -88,4 +96,10 @@ LeTurfu::Entity* LeTurfu::Application::FindEntityparent(AComponent* currentCompo
             }
         }
     }
+}
+
+int LeTurfu::Application::GenerateID()
+{
+    genericID++;
+    return genericID;
 }

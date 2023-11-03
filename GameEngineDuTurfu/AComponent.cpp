@@ -1,13 +1,15 @@
 #include "pch.h"
 #include "AComponent.h"
+#include "Application.h"
 
 LeTurfu::AComponent::AComponent()
 {
-	
+	GenerateID();
 }
 
 void LeTurfu::AComponent::Awake()
 {
+	
 }
 
 void LeTurfu::AComponent::Start()
@@ -24,6 +26,7 @@ void LeTurfu::AComponent::LateUpdate()
 
 void LeTurfu::AComponent::GenerateID()
 {
+	ID = LeTurfu::Application::GetInstance()->GenerateID();
 }
 
 void LeTurfu::AComponent::Draw()

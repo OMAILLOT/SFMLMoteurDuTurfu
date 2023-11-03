@@ -37,5 +37,4 @@ void LeTurfu::CameraComponent::Update(float deltaTime)
 
 void LeTurfu::CameraComponent::GenerateID()
 {
-	ID = 1126644564646;
 }

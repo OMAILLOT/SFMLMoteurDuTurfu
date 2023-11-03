@@ -1,4 +1,5 @@
 #include "CharacterController.h"
+#include "Rigibody.h"
 
 
 LeTurfu::CharacterController::CharacterController()
@@ -48,7 +49,9 @@ void LeTurfu::CharacterController::MoveEntity()
             baseMovement += sf::Vector2f(0, speed);
     }
 
-    LeTurfu::Application::instance->FindEntityparent(this)->move(baseMovement);
+    // LeTurfu::Application::instance->FindEntityparent(this)->move(baseMovement);
+    b2Vec2 movement = b2Vec2(baseMovement.x, baseMovement.y);
+    LeTurfu::Application::instance->FindEntityparent(this)->GetComponent<Rigibody>()->SetLinearVelocity(movement);
 }
 
 void LeTurfu::CharacterController::DetectBorder()
@@ -104,5 +107,4 @@ void LeTurfu::CharacterController::CoinTouch()
 
 void LeTurfu::CharacterController::GenerateID()
 {
-    ID = 98788974960;
 }

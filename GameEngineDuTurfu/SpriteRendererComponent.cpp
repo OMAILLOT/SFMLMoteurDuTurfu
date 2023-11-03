@@ -1,9 +1,14 @@
 #include "SpriteRendererComponent.h"
+#include "RessourceManager.h"
 
 
 LeTurfu::SpriteRendererComponent::SpriteRendererComponent()
 {
-    if (!texture.loadFromFile("DVD.png"))
+}
+
+void LeTurfu::SpriteRendererComponent::Init()
+{
+    if (!texture.loadFromFile(LeTurfu::RessourceManager::GetInstance()->GetAssetPath(assetName)))
     {
         std::cerr << "ERROR" << std::endl;
     }
@@ -19,11 +24,6 @@ void LeTurfu::SpriteRendererComponent::Update(float deltaTime)
 {
     sprite.setPosition(LeTurfu::Application::instance->FindEntityparent(this)->getPosition());
     LeTurfu::Application::GetInstance()->window.draw(sprite);
-}
-
-void LeTurfu::SpriteRendererComponent::GenerateID()
-{
-    ID = 2611584466;
 }
 
 void LeTurfu::SpriteRendererComponent::Draw()

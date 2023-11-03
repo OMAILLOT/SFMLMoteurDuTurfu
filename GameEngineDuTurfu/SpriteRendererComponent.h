@@ -13,10 +13,12 @@ namespace LeTurfu {
 		sf::Sprite sprite;
 		sf::Vector2f position = sf::Vector2f(500, 500);
 		sf::Vector2f scale = sf::Vector2f(.1f, .1f);
+		std::string assetName = "DVD.png";
 
 		SpriteRendererComponent();
+		void Init();
 		virtual void Update(float deltaTime) override;
-		virtual void GenerateID() override;
+		//virtual void GenerateID() override;
 		virtual void Draw() override;
 	};
 }

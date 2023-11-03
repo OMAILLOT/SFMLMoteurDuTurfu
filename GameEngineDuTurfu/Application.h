@@ -1,11 +1,16 @@
 #pragma once
 #include <iostream>
 #include "Entity.h"
+#include "Physics.h"
 
 namespace LeTurfu {
 
 	class Application
 	{
+	private:
+		Physics* physics;
+		int genericID;
+
 	public:
 		std::vector<LeTurfu::AComponent> allComponent;
 		sf::RenderWindow window;
@@ -32,10 +37,10 @@ namespace LeTurfu {
 		Entity* CreateEntity();
 		void CreateComponent();
 		void ChangeColorBackground();
+		Physics* GetPhysics();
 
-
-		
 		Entity* FindEntityparent(AComponent* currentComponent);
+		int GenerateID();
 
 	private:
 

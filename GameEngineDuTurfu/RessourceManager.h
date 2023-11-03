@@ -7,16 +7,14 @@ namespace LeTurfu {
 	class RessourceManager
 	{
 	private:
-		//RessourcesManager* instance;
-
+		static RessourceManager* instance;
 
 	public:
 		std::map<std::string, std::string> spritesPath;
 
 		RessourceManager();
-		RessourceManager* GetInstance();
-
+		void Init();
+		static RessourceManager* GetInstance();
+		std::string GetAssetPath(std::string localPath);
 	};
-
-
 }
