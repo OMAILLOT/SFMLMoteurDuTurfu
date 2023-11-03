@@ -68,3 +68,8 @@ b2Body* LeTurfu::Rigibody::GetBody()
 {
     return body;
 }
+
+void LeTurfu::Rigibody::Update(float deltaTime)
+{
+    SetLinearVelocity(movement);
+}

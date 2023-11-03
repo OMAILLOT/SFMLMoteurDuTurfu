@@ -16,5 +16,6 @@ namespace LeTurfu {
 		void Init();
 		static RessourceManager* GetInstance();
 		std::string GetAssetPath(std::string localPath);
+		std::string GetScriptPathByID(std::string localPath);
 	};
 }

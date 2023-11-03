@@ -12,7 +12,7 @@ namespace LeTurfu {
 		int genericID;
 
 	public:
-		std::vector<LeTurfu::AComponent> allComponent;
+		std::vector<LeTurfu::AComponent*> allComponent;
 		sf::RenderWindow window;
 		std::vector<sf::Color> allColor{
 			sf::Color::Magenta,

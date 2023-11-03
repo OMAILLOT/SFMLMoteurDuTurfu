@@ -1,25 +1,21 @@
 #pragma once
-#include "ICollisationable.h"
 #include"box2d/b2_body.h"
 #include "CollisionListener.h"
 
 namespace LeTurfu {
 
-class Collision : public ICollisationable
+class Collision
 {
 protected:
 	b2Body* currentRigibody;
 	b2Body* otherRigibody;
 
 public :
-	b2Body* GetCurrentRigibody();
-	b2Body* GetOtherRigibody();
+	b2Body* GetRbA();
+	b2Body* GetRbB();
 
 	void SetCurrentRigiBody(b2Body* newBody);
 	void SetOtherRigibody(b2Body* newBody);
-
-	virtual void BeginContact(b2Contact* contact) override;
-	virtual void EndContact(b2Contact* contact) override;
 };
 
 }

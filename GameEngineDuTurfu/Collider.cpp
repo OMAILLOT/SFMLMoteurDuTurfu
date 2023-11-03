@@ -17,3 +17,11 @@ b2Shape* LeTurfu::Collider::GetShape()
 {
     return nullptr;
 }
+
+void LeTurfu::Collider::BeginContact(Collision* collision)
+{
+}
+
+void LeTurfu::Collider::EndContact(Collision* collision)
+{
+}

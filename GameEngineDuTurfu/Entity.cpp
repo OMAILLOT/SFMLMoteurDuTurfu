@@ -1,4 +1,5 @@
 #include "Entity.h"
+#include "Application.h"
 
 void LeTurfu::Entity::Awake()
 {
@@ -28,6 +29,7 @@ LeTurfu::Entity::Entity()
 LeTurfu::AComponent* LeTurfu::Entity::addComponent(AComponent* component)
 {
 	allComponents.push_back(component);
+	Application::GetInstance()->allComponent.push_back(component);
 	return component;
 }
 

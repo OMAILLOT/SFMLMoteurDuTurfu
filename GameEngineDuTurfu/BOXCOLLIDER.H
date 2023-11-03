@@ -16,6 +16,7 @@ public:
 	void Init();
 	virtual b2Shape* GetShape() override;
 	void SetShapeSize(float size);
+	virtual void BeginContact(Collision* collision) override;
 };
 
 }

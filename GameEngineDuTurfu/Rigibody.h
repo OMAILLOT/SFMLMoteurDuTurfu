@@ -13,6 +13,7 @@ protected:
 	b2Body* body;
 	Entity* entityParent;
 public:
+	b2Vec2 movement = b2Vec2(0,0);
 	Rigibody();
 	void Init();
 
@@ -28,6 +29,8 @@ public:
 	b2Vec2 GetLinearVelocity();
 	b2Vec2 GetAngularVelocity();
 	b2Body* GetBody();
+
+	virtual void Update(float deltaTime) override;
 };
 
 }

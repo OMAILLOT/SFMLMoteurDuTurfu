@@ -1,11 +1,11 @@
 #include "Collision.h"
 
-b2Body* LeTurfu::Collision::GetCurrentRigibody()
+b2Body* LeTurfu::Collision::GetRbA()
 {
     return currentRigibody;
 }
 
-b2Body* LeTurfu::Collision::GetOtherRigibody()
+b2Body* LeTurfu::Collision::GetRbB()
 {
     return otherRigibody;
 }
@@ -20,10 +20,3 @@ void LeTurfu::Collision::SetOtherRigibody(b2Body* newBody)
     otherRigibody = newBody;
 }
 
-void LeTurfu::Collision::BeginContact(b2Contact* contact)
-{
-}
-
-void LeTurfu::Collision::EndContact(b2Contact* contact)
-{
-}

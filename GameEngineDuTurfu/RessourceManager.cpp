@@ -32,6 +32,14 @@ std::string LeTurfu::RessourceManager::GetAssetPath(std::string localPath)
 	return std::filesystem::path(buffer).parent_path().string() + "\\Assets\\" + localPath;
 }
 
+std::string LeTurfu::RessourceManager::GetScriptPathByID(std::string localPath)
+{
+	TCHAR buffer[MAX_PATH];
+	GetModuleFileName(NULL, buffer, sizeof(buffer));
+
+	return std::filesystem::path(buffer).parent_path().string() + "\\Scripts\\" + localPath;
+}
+
 //LeTurfu::RessourceManager* LeTurfu::RessourceManager::GetInstance()
 //{
 //	if (instance == nullptr) {
