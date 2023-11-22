@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Entity.h"
 #include "Physics.h"
+#include "CharacterController.h"
 
 namespace LeTurfu {
 
@@ -29,17 +30,18 @@ namespace LeTurfu {
 		static Application* GetInstance();
 
 		std::vector<Entity*> allEntity;
-		Application();
+		Application();		
 		int Init();
 		void AllUpdate();
 		void OpenWindow();
 		void CloseWindow();
-		Entity* CreateEntity();
+		Entity* CreateEntity(std::string name);
 		void CreateComponent();
 		void ChangeColorBackground();
 		Physics* GetPhysics();
 
 		Entity* FindEntityparent(AComponent* currentComponent);
+		Entity* GetEntityByName(std::string name);
 		int GenerateID();
 
 	private:

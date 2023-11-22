@@ -51,7 +51,10 @@ void LeTurfu::CharacterController::MoveEntity()
             rbMovement += b2Vec2(0, speed);
     }
 
+    PlayerPosition = Application::GetInstance()->FindEntityparent(this)->getPosition();
+
     // LeTurfu::Application::instance->FindEntityparent(this)->move(baseMovement);
+
 }
 
 void LeTurfu::CharacterController::DetectBorder()

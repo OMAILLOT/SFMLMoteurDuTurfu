@@ -15,6 +15,7 @@ namespace LeTurfu {
 		float rotateSpeed = 0;
 		float speed = 0.01f;
 		bool isRotate;
+		sf::Vector2f PlayerPosition;
 
 		CharacterController();
 

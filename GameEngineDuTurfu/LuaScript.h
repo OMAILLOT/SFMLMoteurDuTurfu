@@ -1,10 +1,11 @@
 #pragma once
-#include "lua.h"
 #include <string>
+#include <lua.hpp>
+#include "AComponent.h"
 
 namespace LeTurfu {
 
-class LuaScript
+class LuaScript : public AComponent
 {
 protected:
 	
@@ -13,7 +14,9 @@ protected:
 
 public:
 	LuaScript();
+	void Init();
 	void SetScript(std::string assetID);
+	virtual void Update(float deltaTime) override;
 
 };
 

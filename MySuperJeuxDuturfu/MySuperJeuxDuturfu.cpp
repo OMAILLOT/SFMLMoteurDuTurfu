@@ -8,6 +8,7 @@
 #include <BoxCollider.h>
 #include <Rigibody.h>
 #include <CollisionListener.h>
+#include <LuaScript.h>
 
 int main()
 {
@@ -17,7 +18,7 @@ int main()
     
 
     //Player
-    LeTurfu::Entity* playerEntity = LeTurfu::Application::GetInstance()->CreateEntity();
+    LeTurfu::Entity* playerEntity = LeTurfu::Application::GetInstance()->CreateEntity("PlayerEntity");
     LeTurfu::SpriteRendererComponent* playerSpriteRenderer = new LeTurfu::SpriteRendererComponent();
     playerSpriteRenderer->assetName = "DVD.png";
     playerSpriteRenderer->Init();
@@ -42,22 +43,19 @@ int main()
     playerRbComponent->GetBody()->SetGravityScale(0);
     playerRbComponent->GetBody()->SetAwake(true);
     //Camera
-    LeTurfu::Entity* cameraEntity = LeTurfu::Application::GetInstance()->CreateEntity();
-
+    LeTurfu::Entity* cameraEntity = LeTurfu::Application::GetInstance()->CreateEntity("CameraEntity");
     LeTurfu::CameraComponent* cameraComponent = new LeTurfu::CameraComponent();
     cameraEntity->addComponent(cameraComponent);
 
 
     //Enemy
-    LeTurfu::Entity* enemyEntity = LeTurfu::Application::GetInstance()->CreateEntity();
+    LeTurfu::Entity* enemyEntity = LeTurfu::Application::GetInstance()->CreateEntity("EnemyEntity");
     enemyEntity->setPosition(500, 750);
-
 
     LeTurfu::SpriteRendererComponent* enemySpriteRenderer = new LeTurfu::SpriteRendererComponent();
     enemySpriteRenderer->assetName = "DVDEnemy.png";
     enemySpriteRenderer->Init();
     enemyEntity->addComponent(enemySpriteRenderer);
-
 
     LeTurfu::BoxCollider* enemyBoxCollider = new LeTurfu::BoxCollider();
     enemyBoxCollider->density = 0.0f;
@@ -69,6 +67,11 @@ int main()
     enemyEntity->addComponent(enemyRbComponent);
     enemyRbComponent->Init();
     enemyRbComponent->GetBody()->SetAwake(true);
+
+    LeTurfu::LuaScript* enemyMechant = new LeTurfu::LuaScript();
+    enemyEntity->addComponent(enemyMechant);
+    enemyMechant->Init();
+    enemyMechant->SetScript("EnemyMechant.lua");
     
     LeTurfu::Application::GetInstance()->AllUpdate();
 }

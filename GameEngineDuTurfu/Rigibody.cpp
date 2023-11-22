@@ -46,7 +46,6 @@ void LeTurfu::Rigibody::SetAngularVelocity(b2Vec2 angularVelocity)
 b2Vec2 LeTurfu::Rigibody::GetBodyPosition()
 {
     return body->GetTransform().p;
-
 }
 
 float LeTurfu::Rigibody::GetBodyAngle()

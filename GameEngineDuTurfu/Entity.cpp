@@ -21,9 +21,15 @@ void LeTurfu::Entity::LateUpdate()
 {
 }
 
-LeTurfu::Entity::Entity()
+LeTurfu::Entity::Entity(std::string _name)
 {
+	name = _name;
 	Awake();
+}
+
+std::string LeTurfu::Entity::GetName()
+{
+	return name;
 }
 
 LeTurfu::AComponent* LeTurfu::Entity::addComponent(AComponent* component)
@@ -33,11 +39,16 @@ LeTurfu::AComponent* LeTurfu::Entity::addComponent(AComponent* component)
 	return component;
 }
 
-LeTurfu::AComponent* LeTurfu::Entity::GetComponent(AComponent* component)
+void LeTurfu::Entity::setVectorPosition(sf::Vector2f v)
 {
-	for (AComponent* _component : allComponents) {
-		if (_component->ID == component->ID) {
-			return _component;
-		}
-	}
+	setPosition(v);
 }
+
+//LeTurfu::AComponent* LeTurfu::Entity::GetComponent(AComponent* component)
+//{
+//	for (AComponent* _component : allComponents) {
+//		if (_component->ID == component->ID) {
+//			return _component;
+//		}
+//	}
+//}

@@ -65,9 +65,9 @@ void LeTurfu::Application::CloseWindow()
 {
 }
 
-LeTurfu::Entity* LeTurfu::Application::CreateEntity()
+LeTurfu::Entity* LeTurfu::Application::CreateEntity(std::string name)
 {
-    Entity* entity = new Entity();
+    Entity* entity = new Entity(name);
     allEntity.push_back(entity);
     return entity;
 }
@@ -102,4 +102,14 @@ int LeTurfu::Application::GenerateID()
 {
     genericID++;
     return genericID;
+}
+
+LeTurfu::Entity* LeTurfu::Application::GetEntityByName(std::string name)
+{
+    for (Entity* entity : allEntity) {
+        if (entity->GetName() == name) {
+            return entity;
+        }
+    }
+    return nullptr;
 }

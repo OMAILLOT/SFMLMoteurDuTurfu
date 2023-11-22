@@ -162,6 +162,7 @@
     <ClInclude Include="Collision.h" />
     <ClInclude Include="CollisionListener.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="EntityApi.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="ICollisationable.h" />
     <ClInclude Include="LuaScript.h" />
@@ -182,6 +183,7 @@
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="CollisionListener.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="EntityApi.cpp" />
     <ClCompile Include="GameEngineDuTurfu.cpp" />
     <ClCompile Include="ICollisationable.cpp" />
     <ClCompile Include="LuaScript.cpp" />
