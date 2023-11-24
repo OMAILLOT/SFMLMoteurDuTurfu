@@ -21,27 +21,36 @@ int main()
     LeTurfu::Entity* playerEntity = LeTurfu::Application::GetInstance()->CreateEntity("PlayerEntity");
     LeTurfu::SpriteRendererComponent* playerSpriteRenderer = new LeTurfu::SpriteRendererComponent();
     playerSpriteRenderer->assetName = "DVD.png";
-    playerSpriteRenderer->Init();
     playerEntity->addComponent(playerSpriteRenderer);
+    playerSpriteRenderer->Init();
 
     LeTurfu::CharacterController* characterController = new LeTurfu::CharacterController();
     characterController->speedIncrease = 0.0f;
-    characterController->maxSpeed = 100;
-    characterController->speed = .15f;
+    characterController->maxSpeed = 10000;
+    characterController->speed = 20;
     playerEntity->addComponent(characterController);
     playerEntity->setPosition(500, 500);
 
     LeTurfu::BoxCollider* playerBoxCollider = new LeTurfu::BoxCollider();
     playerBoxCollider->density = 0.3f;
+    playerEntity->addComponent(playerBoxCollider);
     playerBoxCollider->Init();
     playerBoxCollider->SetShapeSize(1);
-    playerEntity->addComponent(playerBoxCollider);
     
     LeTurfu::Rigibody* playerRbComponent = new LeTurfu::Rigibody();
     playerEntity->addComponent(playerRbComponent);
     playerRbComponent->Init();
     playerRbComponent->GetBody()->SetGravityScale(0);
     playerRbComponent->GetBody()->SetAwake(true);
+
+    characterController->Init();
+
+    LeTurfu::LuaScript* playerScript = new LeTurfu::LuaScript();
+    playerEntity->addComponent(playerScript);
+    playerScript->Init();
+    playerScript->SetScript("player.lua");
+
+
     //Camera
     LeTurfu::Entity* cameraEntity = LeTurfu::Application::GetInstance()->CreateEntity("CameraEntity");
     LeTurfu::CameraComponent* cameraComponent = new LeTurfu::CameraComponent();
@@ -50,18 +59,18 @@ int main()
 
     //Enemy
     LeTurfu::Entity* enemyEntity = LeTurfu::Application::GetInstance()->CreateEntity("EnemyEntity");
-    enemyEntity->setPosition(500, 750);
+    enemyEntity->setPosition(1500, 1750);
 
     LeTurfu::SpriteRendererComponent* enemySpriteRenderer = new LeTurfu::SpriteRendererComponent();
     enemySpriteRenderer->assetName = "DVDEnemy.png";
-    enemySpriteRenderer->Init();
     enemyEntity->addComponent(enemySpriteRenderer);
+    enemySpriteRenderer->Init();
 
     LeTurfu::BoxCollider* enemyBoxCollider = new LeTurfu::BoxCollider();
     enemyBoxCollider->density = 0.0f;
+    enemyEntity->addComponent(enemyBoxCollider);
     enemyBoxCollider->Init();
     enemyBoxCollider->SetShapeSize(100);
-    enemyEntity->addComponent(enemyBoxCollider);
 
     LeTurfu::Rigibody* enemyRbComponent = new LeTurfu::Rigibody();
     enemyEntity->addComponent(enemyRbComponent);
@@ -73,5 +82,11 @@ int main()
     enemyMechant->Init();
     enemyMechant->SetScript("EnemyMechant.lua");
     
+    LeTurfu::Entity* EnemyManager = new LeTurfu::Entity("EnemyManager");
+    LeTurfu::LuaScript* luaEnemyManager = new LeTurfu::LuaScript();
+    EnemyManager->addComponent(luaEnemyManager);
+    luaEnemyManager->Init();
+    luaEnemyManager->SetScript("EnemyMechantManager.lua");
+
     LeTurfu::Application::GetInstance()->AllUpdate();
 }

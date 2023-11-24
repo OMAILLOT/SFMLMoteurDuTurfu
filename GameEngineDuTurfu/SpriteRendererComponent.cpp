@@ -1,5 +1,6 @@
 #include "SpriteRendererComponent.h"
 #include "RessourceManager.h"
+#include "Entity.h"
 
 
 LeTurfu::SpriteRendererComponent::SpriteRendererComponent()
@@ -18,6 +19,7 @@ void LeTurfu::SpriteRendererComponent::Init()
     sprite.setScale(scale);
 
     sprite.setOrigin(texture.getSize().x / 2, texture.getSize().y / 2);
+    //sprite.setColor();
 }
 
 void LeTurfu::SpriteRendererComponent::Update(float deltaTime)

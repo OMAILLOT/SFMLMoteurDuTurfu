@@ -1,5 +1,6 @@
 #include "BoxCollider.h"
 #include "Rigibody.h"
+#include "LuaScript.h"
 
 LeTurfu::BoxCollider::BoxCollider()
 {
@@ -27,6 +28,7 @@ void LeTurfu::BoxCollider::SetShapeSize(float size)
 
 void LeTurfu::BoxCollider::BeginContact(Collision* collision)
 {
+	Collider::BeginContact(collision);
 	float velocityToLose = .8f;
 	float velocityToIncrease = .2f;
 	b2Vec2 currentVelocityB = collision->GetRbB()->GetLinearVelocity();
@@ -35,18 +37,13 @@ void LeTurfu::BoxCollider::BeginContact(Collision* collision)
 	b2Vec2 newVelocityA = b2Vec2((currentVelocityB.x * velocityToLose + currentVelocityA.x * velocityToIncrease),
 		(currentVelocityB.y * velocityToLose + currentVelocityA.y * velocityToIncrease));
 
-	//b2Vec2 newVelocityA = b2Vec2(currentVelocityA.x * -1, currentVelocityA.y * -1);
-	//b2Vec2 newVelocityA = b2Vec2(-5000 , -5000);
-
 	b2Vec2 newVelocityB = b2Vec2(currentVelocityA.x * velocityToLose + currentVelocityB.x * velocityToIncrease,
 		currentVelocityA.y * velocityToLose + currentVelocityB.y * velocityToIncrease);
 
-
-	
 	collision->GetRbB()->SetLinearVelocity(newVelocityB);
-	//collision->GetRbA()->SetLinearVelocity(newVelocityA);
 
 	Entity* entityParent = Application::GetInstance()->FindEntityparent(this);
 
 	entityParent->GetComponent<Rigibody>()->movement = newVelocityA;
+
 }

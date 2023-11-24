@@ -9,6 +9,7 @@ namespace LeTurfu {
 	protected:
 		int ID = 0315665;
 		std::string name;
+		
 
 	public:
 		
@@ -17,7 +18,9 @@ namespace LeTurfu {
 		void Start();
 		void Update(float deltaTime);
 		void LateUpdate();
+		void StartAllComponent();
 		Entity(std::string name);
+		~Entity();
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
 		}
 		std::string GetName();
@@ -25,7 +28,6 @@ namespace LeTurfu {
 		AComponent* addComponent(AComponent* component);
 		void setVectorPosition(sf::Vector2f v);
 		//AComponent* GetComponent(AComponent* component);
-
 
 		template<typename T>
 		inline T* GetComponent() {

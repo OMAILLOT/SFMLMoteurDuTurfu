@@ -1,4 +1,7 @@
 #include "Collider.h"
+#include "Entity.h"
+#include "Application.h"
+#include "LuaScript.h"
 
 LeTurfu::Collider::Collider()
 {
@@ -20,6 +23,8 @@ b2Shape* LeTurfu::Collider::GetShape()
 
 void LeTurfu::Collider::BeginContact(Collision* collision)
 {
+    Entity* entityParent = Application::GetInstance()->FindEntityparent(this);
+    entityParent->GetComponent<LuaScript>()->OnBeginContact();
 }
 
 void LeTurfu::Collider::EndContact(Collision* collision)

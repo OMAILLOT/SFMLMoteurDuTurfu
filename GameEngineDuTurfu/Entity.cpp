@@ -1,5 +1,6 @@
 #include "Entity.h"
 #include "Application.h"
+#include "EntityApi.h"
 
 void LeTurfu::Entity::Awake()
 {
@@ -21,10 +22,23 @@ void LeTurfu::Entity::LateUpdate()
 {
 }
 
+void LeTurfu::Entity::StartAllComponent()
+{
+	for (AComponent* comp : allComponents) {
+		comp->Awake();
+		comp->Start();
+	}
+}
+
 LeTurfu::Entity::Entity(std::string _name)
 {
 	name = _name;
+	LeTurfu::EntityApi* entityApi = new LeTurfu::EntityApi(this);
 	Awake();
+}
+
+LeTurfu::Entity::~Entity()
+{
 }
 
 std::string LeTurfu::Entity::GetName()

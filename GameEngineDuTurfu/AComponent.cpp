@@ -7,6 +7,10 @@ LeTurfu::AComponent::AComponent()
 	GenerateID();
 }
 
+LeTurfu::AComponent::~AComponent()
+{
+}
+
 void LeTurfu::AComponent::Awake()
 {
 	
